@@ -1,0 +1,25 @@
+<div fxLayout="row" fxLayoutGap="5px" (mouseleave)="highlight=!highlight" (mouseenter)="highlight=!highlight"
+  fxLayoutAlign="center center" [style.margin-top]="'20px'">
+  <!-- <mat-card class="search-card z-depth-2" [ngClass]="{'z-depth-3':highlight}"> -->
+  <form [style.fontSize.px]="'12px'" class="example-form">
+    <mat-form-field appearance="fill" style="margin-right:10px">
+      <mat-label>Drug</mat-label>
+      <mat-icon style="font-weight:bold;color: orangered;" aria-hidden="false" aria-label="Example home icon" matPrefix>search</mat-icon>
+      <input matInput aria-label="Drug" [matAutocomplete]="auto" [formControl]="drugCtrl">
+      <!-- <mat-icon style="font-size: 16px;color: #D7DBDD;" aria-hidden="false" aria-label="Example home icon" matSuffix>cancel</mat-icon> -->
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let drug of filteredDrugs | async" [value]="drug.drugName">
+          <span>{{drug?.drugName}}</span> |
+          <small>{{drug?.description}}</small>
+        </mat-option>
+      </mat-autocomplete>
+
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Zipcode</mat-label>
+      <mat-icon style="font-weight:bold;color: red;" aria-hidden="false" aria-label="Example home icon" matPrefix>location_on</mat-icon>
+      <input matInput name="zipcodeField" [(ngModel)]="zipcode">
+    </mat-form-field>
+  </form>
+  <!-- </mat-card> -->
+</div>
